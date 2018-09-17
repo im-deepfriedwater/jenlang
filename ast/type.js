@@ -58,3 +58,5 @@ Type.ANY = new Type('any');
 Type.forName = name => Type.cache[name];
 
 module.exports = Type;
+
+export { Type };
