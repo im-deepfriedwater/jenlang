@@ -1,12 +1,17 @@
-const Type = require('./type');
-const ListType = require('./list-type');
+import { Type } from "./type";
+import { ListType } from "./list-type";
 
-module.exports = class Accessor {
-  constructor(object, property) {
-    Object.assign(this, { object, property });
+export class Accessor {
+  object: any;
+  property: any;
+  type: any;
+
+  constructor(object: Object, property: Object) {
+    this.object = object;
+    this.property = property;
   }
 
-  analyze(context) {
+  analyze(context: any) {
     this.object.analyze(context);
     // TODO move this into a less hard coded solution.
     if (this.property === 'length') {

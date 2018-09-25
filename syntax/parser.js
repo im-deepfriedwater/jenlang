@@ -124,7 +124,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   _terminal() { return this.sourceString; },
 });
 
-module.exports = (text) => {
+export (text) => {
   const match = grammar.match(withIndentsAndDedents(text));
   if (!match.succeeded()) {
     throw match.message;

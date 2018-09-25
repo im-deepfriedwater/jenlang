@@ -1,6 +1,6 @@
-const Type = require('./type');
+import { Type } from "./type";
 
-module.exports = class ListType {
+export class ListType {
   constructor(listType) {
     Object.assign(this, { listType });
   }

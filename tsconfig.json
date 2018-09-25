@@ -2,7 +2,7 @@
     "compilerOptions": {
         "outDir": "./built",
         "allowJs": true,
-        "target": "es6",
+        "target": "es2016",
         "noImplicitAny": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
@@ -10,10 +10,10 @@
         "noImplicitThis": true,
         "noImplicitReturns": true
     },
-    
+
     "include": [
         "./ast/**/*",
         "./backend/**/*",
-        "./test/**/*"
+        "./test/**/*", "semantics/multi-type.ts"
     ]
 }

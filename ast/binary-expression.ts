@@ -1,12 +1,16 @@
-const Type = require('./type');
-const MultiType = require('../semantics/multi-type');
+import { Type } from './type';
+import { MultiType } from '../semantics/multi-type';
 
-module.exports = class BinaryExpression {
-  constructor(op, left, right) {
+export class BinaryExpression {
+  op: any
+  left: any
+  right: any
+  type: any
+  constructor(op: any, left: any, right: any) {
     Object.assign(this, { op, left, right });
   }
 
-  analyze(context) {
+  analyze(context: any) {
     this.left.analyze(context);
     this.right.analyze(context);
 
@@ -22,7 +26,7 @@ module.exports = class BinaryExpression {
       this.mustHaveBooleanOperands();
       this.type = Type.BOOLEAN;
     } else {
-      // All other binary operators are arithmetic
+      // All other binary operators are arithmetic.
       this.mustHaveIntegerOperands();
       this.type = Type.NUMBER;
     }

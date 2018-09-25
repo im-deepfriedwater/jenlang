@@ -8,22 +8,27 @@
  * This is a command line application that compiles a jen program from
  * a file. Synopsis:
  *
- * ./jen.js -a <filename>
+ * ./jen.ts -a <filename>
  *     writes out the AST and stops
  *
- * ./jen.js -i <filename>
+ * ./jen.ts -i <filename>
  *     writes the decorated AST then stops
  *
- * ./jen.js <filename>
+ * ./jen.ts <filename>
  *     compiles the jen program to Python, writing the generated
  *     Python code to standard output.
  *
- * ./jen.js -o <filename>
+ * ./jen.ts -o <filename>
  *     optimizes the intermediate code before generating target Python.
  *
  * Output of the AST and decorated AST uses the object inspection functionality
  * built into Node.js.
  */
+
+import fs from 'fs';
+import util from 'util';
+import parse from './syntax/parser';
+import './backend/python-generator';
 
 const { argv } = require('yargs')
   .usage('$0 [-a] [-o] [-i] filename')
@@ -32,11 +37,6 @@ const { argv } = require('yargs')
   .describe('o', 'do optimizations')
   .describe('i', 'generate and show the decorated abstract syntax tree then stop')
   .demand(1);
-
-const fs = require('fs');
-const util = require('util');
-const parse = require('./syntax/parser');
-require('./backend/python-generator');
 
 fs.readFile(argv._[0], 'utf-8', (err, text) => {
   if (err) {
@@ -58,3 +58,7 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
   }
   program.gen();
 });
+
+function f(x){
+  return x;
+}

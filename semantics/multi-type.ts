@@ -4,10 +4,8 @@
 // multi variable type checking.
 
 // Very empty as of now.
-class MultiType {
-  constructor(returnTypes) {
+export class MultiType {
+  constructor(returnTypes: any) {
     Object.assign(this, { returnTypes });
   }
 }
-
-module.exports = MultiType;

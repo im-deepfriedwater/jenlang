@@ -1,5 +1,5 @@
-module.exports = class Annotation {
-  constructor(id, paramTypes, resultTypes) {
+export class Annotation {
+  constructor(id: any, paramTypes: any, resultTypes: any) {
     Object.assign(this, { id, paramTypes, resultTypes });
   }
   /* eslint-disable class-methods-use-this */
