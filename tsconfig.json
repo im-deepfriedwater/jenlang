@@ -1,19 +1,21 @@
-{
+{   
+    "compileOnSave": true,
+    
     "compilerOptions": {
         "outDir": "./built",
-        "allowJs": true,
+        "allowJs": false,
         "target": "es2016",
         "noImplicitAny": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
         "noImplicitThis": true,
-        "noImplicitReturns": true
+        "noImplicitReturns": true,
+        "strict": true
     },
 
     "include": [
-        "./ast/**/*",
-        "./backend/**/*",
-        "./test/**/*", "semantics/multi-type.ts"
+        "./src/**/*",
+        "./test/**/*"
     ]
 }

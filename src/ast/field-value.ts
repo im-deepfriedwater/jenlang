@@ -1,5 +1,8 @@
-module.exports = class FieldValue {
-  constructor(id, expression) {
+export class FieldValue {
+  id: any
+  expression: any
+
+  constructor(id: any, expression: any) {
     this.id = id;
     this.expression = expression;
   }

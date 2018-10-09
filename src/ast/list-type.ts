@@ -1,11 +1,14 @@
 import { Type } from "./type";
 
 export class ListType {
-  constructor(listType) {
+  listType: any
+  computedType: any
+
+  constructor(listType: any) {
     Object.assign(this, { listType });
   }
 
-  analyze(context) {
+  analyze(context: any) {
     // Temporary solution for the empty array, simply make it an array of type any.
     if (this.listType.length === 0) {
       this.computedType = Type.ANY;
@@ -48,13 +51,13 @@ export class ListType {
   }
 
 
-  mustBeCompatibleWith(otherType, message) {
+  mustBeCompatibleWith(otherType: any, message: any) {
     if (!this.isCompatibleWith(otherType) && this.computedType !== Type.ANY) {
       throw message;
     }
   }
 
-  isCompatibleWith(otherType) {
+  isCompatibleWith(otherType: any) {
     if (otherType === Type.ANY) {
       return true;
     }

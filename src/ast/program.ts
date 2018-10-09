@@ -1,7 +1,9 @@
-const Context = require('../semantics/context');
+import { Context } from '../semantics/context';
 
-module.exports = class Program {
-  constructor(body) {
+export class Program {
+  body: any;
+
+  constructor(body: any) {
     this.body = body;
   }
 

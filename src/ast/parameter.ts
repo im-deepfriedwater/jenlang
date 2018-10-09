@@ -1,5 +1,8 @@
-module.exports = class Parameter {
-  constructor(id) {
+export class Parameter {
+  id: any;
+  defaultExpression: any;
+  
+  constructor(id: any) {
     Object.assign(this, { id });
   }
 
@@ -7,7 +10,7 @@ module.exports = class Parameter {
     return this.defaultExpression === null;
   }
 
-  analyze(context) {
+  analyze(context: any) {
     context.add(this);
   }
 

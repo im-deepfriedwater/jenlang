@@ -1,8 +1,13 @@
-const FunctionObject = require('./function-object');
-
+import { FunctionObject } from './function-object';
 // A function declaration binds a function object to a name.
-module.exports = class FunctionDeclaration {
-  constructor(annotation, signature, suite) {
+
+export class FunctionDeclaration {
+  function: any
+  annotation: any
+  signature: any
+  suite: any
+
+  constructor(annotation: any, signature: any, suite: any) {
     Object.assign(this, { annotation, signature, suite });
     this.function =
       new FunctionObject(
@@ -14,7 +19,7 @@ module.exports = class FunctionDeclaration {
       );
   }
 
-  analyze(context) {
+  analyze(context: any) {
     // First put the function in the current context, then analyze it in
     // a new child context.
     if (this.signature.id !== this.annotation.id) {

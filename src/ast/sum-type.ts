@@ -1,30 +1,33 @@
-const Type = require('./type.js');
-const IdentifierExpression = require('./identifier-expression');
+import { Type } from './type.js';
+import { IdentifierExpression } from './identifier-expression.js';
 
-module.exports = class SumType {
-  constructor(basicTypeOrId1, basicTypeOrId2, moreBasicTypesOrIds) {
+export class SumType {
+  types: any;
+  computedTypes: any;
+
+  constructor(basicTypeOrId1: any, basicTypeOrId2: any, moreBasicTypesOrIds: any) {
     Object.assign(this, {
       types: [basicTypeOrId1, basicTypeOrId2, ...moreBasicTypesOrIds],
     });
   }
 
-  analyze(context) {
+  analyze(context: any) {
     // Creates a mapping of each string representation of a type to the actual
     // type it is referencing. This allows for recursively checking through
     // sum types in the case of nested sum types.
     this.computedTypes = {};
-    this.types.forEach((type) => {
+    this.types.forEach((type: any) => {
       const typeId = type instanceof IdentifierExpression ? type.id : type;
       this.computedTypes[typeId] = Type.cache[typeId] || context.lookupSumType(typeId);
     });
   }
 
-  isCompatibleWith(otherType) {
+  isCompatibleWith(otherType: any) {
     return Object.keys(this.computedTypes)
       .some(typeKey => this.computedTypes[typeKey].isCompatibleWith(otherType));
   }
 
-  mustBeCompatibleWith(otherType, message) {
+  mustBeCompatibleWith(otherType: any, message: any) {
     if (!this.isCompatibleWith(otherType)) {
       throw message;
     }

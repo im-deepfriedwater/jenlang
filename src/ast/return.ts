@@ -1,12 +1,13 @@
-module.exports = class ReturnStatement {
-  constructor(returnValue) {
+export class ReturnStatement {
+  returnValue: any;
+  constructor(returnValue: any) {
     this.returnValue = returnValue;
   }
 
-  analyze(context) {
+  analyze(context: any) {
     context.assertInFunction('Return statement outside function');
     if (this.returnValue) {
-      this.returnValue.forEach(value => value.analyze(context));
+      this.returnValue.forEach((value: any) => value.analyze(context));
     }
   }
 

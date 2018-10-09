@@ -1,9 +1,12 @@
-module.exports = class SubscriptedExpression {
-  constructor(variable, subscript) {
+export class SubscriptedExpression {
+  variable: any;
+  subscript: any;
+  
+  constructor(variable: any, subscript: any) {
     Object.assign(this, { variable, subscript });
   }
 
-  analyze(context) {
+  analyze(context: any) {
     this.variable.analyze(context);
     this.subscript.analyze(context);
     this.referent = this.variable.referent;

@@ -1,9 +1,12 @@
-module.exports = class Case {
-  constructor(test, body) {
+export class Case {
+  test: any
+  body: any
+
+  constructor(test: any, body: any) {
     Object.assign(this, { test, body });
   }
 
-  analyze(context) {
+  analyze(context: any) {
     this.test.analyze(context);
     const bodyContext = context.createChildContextForBlock();
     this.body.analyze(bodyContext);
@@ -12,7 +15,7 @@ module.exports = class Case {
   optimize() {
     this.test = this.test.optimize();
     // Suggested: if test is false, remove case. if true, remove following cases and the alt
-    this.body.map(s => s.optimize()).filter(s => s !== null);
+    this.body.map((s: any) => s.optimize()).filter((s: any) => s !== null);
     // Suggested: Look for returns/breaks in the middle of the body
     return this;
   }

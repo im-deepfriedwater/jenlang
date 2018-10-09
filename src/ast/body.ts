@@ -1,9 +1,10 @@
-module.exports = class Body {
-  constructor(statements) {
+export class Body {
+  statements: any[]
+  constructor(statements: any) {
     this.statements = statements;
   }
 
-  analyze(context) {
+  analyze(context: any) {
     this.statements.forEach(s => s.analyze(context));
   }
 

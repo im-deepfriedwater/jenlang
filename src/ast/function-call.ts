@@ -1,13 +1,19 @@
-const MultiType = require('../semantics/multi-type');
+import { MultiType } from '../semantics/multi-type';
 
-module.exports = class Call {
-  constructor(callee, args) {
-    Object.assign(this, { callee, args });
+export class Call {
+  callee: any
+  args: any
+  type: any
+  id: any
+
+  constructor(callee: any, args: any) {
+    this.callee = callee;
+    this.args = args;
   }
 
-  analyze(context) {
+  analyze(context: any) {
     this.callee.analyze(context);
-    this.args.forEach(arg => arg.analyze(context));
+    this.args.forEach((arg: any) => arg.analyze(context));
     context.assertIsFunction(this.callee.referent);
     this.checkArgumentMatching(this.callee.referent);
     // We put references to the type and id to the call object
@@ -23,7 +29,7 @@ module.exports = class Call {
     this.id = this.callee.id;
   }
 
-  checkArgumentMatching(callee) {
+  checkArgumentMatching(callee: any) {
     if (callee.params[0] === 'void' && this.args.length === 0) {
       return;
     } else if (this.args.length > callee.params.length) {
@@ -32,14 +38,14 @@ module.exports = class Call {
       throw new Error('Too little arguments in call');
     }
 
-    this.args.forEach((arg, index) => {
+    this.args.forEach((arg: any, index: any) => {
       arg.type.mustBeCompatibleWith(callee.convertedParamTypes[index], 'Type Mismatch at Function Call');
     });
   }
 
   optimize() {
     this.callee = this.callee.optimize();
-    this.args.forEach(arg => arg.optimize());
+    this.args.forEach((arg: any) => arg.optimize());
     return this;
   }
 };

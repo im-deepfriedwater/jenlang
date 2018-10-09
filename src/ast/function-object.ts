@@ -1,10 +1,20 @@
-const Variable = require('./variable');
-const Type = require('./type');
-const ListType = require('./list-type');
-const IdentifierExpression = require('./identifier-expression');
+import { Variable } from './variable';
+import { Type } from './type';
+import { ListType } from './list-type';
+import { IdentifierExpression } from './identifier-expression';
 
-module.exports = class FunctionObject {
-  constructor(id, paramTypes, resultTypes, params, suite) {
+export class FunctionObject {
+  id: any;
+  paramTypes: any;
+  resultTypes: any;
+  params: any;
+  suite: any;
+  function: any;
+  convertedParamTypes: any;
+  convertedResultTypes: any;
+  type: any;
+
+  constructor(id: any, paramTypes: any, resultTypes: any, params: any, suite: any) {
     Object.assign(this, {
       id, paramTypes, resultTypes, params, suite,
     });
@@ -17,22 +27,23 @@ module.exports = class FunctionObject {
     return !this.function.suite;
   }
 
-  analyze(context) {
+  analyze(context: any) {
     // Each parameter will be declared in the function's scope, mixed in
     // with the function's local variables. This is by design.
 
     // Convert the string from paramTypes and resultTypes to actual Type Object
-    const typeDictionary = {
-      number: Type.NUMBER,
-      boolean: Type.BOOLEAN,
-      string: Type.STRING,
-      error: Type.ERROR,
-      void: Type.VOID,
-      any: Type.ANY,
+    // TODO move into class var
+    const typeDictionary: {[index: string]: any} = {
+      "number": Type.NUMBER,
+      "boolean": Type.BOOLEAN,
+      "string": Type.STRING,
+      "error": Type.ERROR,
+      "void": Type.VOID,
+      "any": Type.ANY,
     };
 
     this.convertedParamTypes = [];
-    this.paramTypes.forEach((t) => {
+    this.paramTypes.forEach((t: any) => {
       if (t in typeDictionary) {
         this.convertedParamTypes.push(typeDictionary[t]);
       } else if (t instanceof IdentifierExpression) {
@@ -46,7 +57,7 @@ module.exports = class FunctionObject {
     });
 
     this.convertedResultTypes = [];
-    this.resultTypes.forEach((t) => {
+    this.resultTypes.forEach((t: any) => {
       if (t in typeDictionary) {
         this.convertedResultTypes.push(typeDictionary[t]);
       } else if (t instanceof IdentifierExpression) {
@@ -64,7 +75,7 @@ module.exports = class FunctionObject {
 
 
     // create a new variable and give it a type
-    this.params.forEach((p, i) => {
+    this.params.forEach((p: any, i: any) => {
       // There's a slight design issue with creating new variables like this.
       // They are detached from the AST, because they are created and used to
       // get added to context but it seems a little off since
@@ -76,15 +87,15 @@ module.exports = class FunctionObject {
 
     // A way of attaching it to the AST would be to fix parser.js
     // to handle parameter entities and then call each ones parameter.
-    // We already have parameter.js from toal's pls so calling each parameters
+    // We already have parameter.js from toal's pls so calling each parameter's
     // analyze would add it to context. We would have to modify parameters
     // to have types and perhaps some sort of setType method to set the type,
     // and then just call each one's analyze method.
 
     // Now we analyze the body with the local context. Note that recursion is
     // allowed, because we've already inserted the function itself into the
-    // booleanntext, so recursive calls will be properly resolved during the
-    // stringoutward moving" scope search. Of course, if you declare a local
+    // boolean text, so recursive calls will be properly resolved during the
+    // string outward moving" scope search. Of course, if you declare a local
     // variable with the same name as the function inside the function, you'll
     // shadow it, which would probably be not a good idea.
     if (this.suite.length !== 0) {
@@ -93,9 +104,9 @@ module.exports = class FunctionObject {
   }
 
   optimize() {
-    this.params.forEach(p => p.optimize());
+    this.params.forEach((p: any) => p.optimize());
     this.suite.optimize();
-    this.suite = this.suite.filter(s => s !== null);
+    this.suite = this.suite.filter((s: any) => s !== null);
     // Suggested: Look for returns in the middle of the body
     return this;
   }

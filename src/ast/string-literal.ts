@@ -1,7 +1,10 @@
-const Type = require('./type.js');
+import { Type } from './type.js';
 
-module.exports = class StringLiteral {
-  constructor(value) {
+export class StringLiteral {
+  value: any;
+  type: any;
+  
+  constructor(value: any) {
     this.value = value;
   }
 

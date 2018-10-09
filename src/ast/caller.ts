@@ -1,9 +1,10 @@
-module.exports = class Caller {
-  constructor(c) {
+export class Caller {
+  call: any
+  constructor(c: any) {
     this.call = c;
   }
 
-  analyze(context) {
+  analyze(context: any) {
     this.call.analyze(context);
   }
 

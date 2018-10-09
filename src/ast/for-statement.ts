@@ -1,12 +1,18 @@
-const Variable = require('./variable');
-const ListType = require('../ast/list-type');
+import { Variable } from '/.variable';
+import { ListType } from '../ast/list-type';
 
-module.exports = class ForStatement {
-  constructor(ids, expression, body) {
-    Object.assign(this, { ids, expression, body });
+export class ForStatement {
+  ids: any
+  expression: any
+  body: any
+  loopVariables: any
+  constructor(ids: any, expression: any, body: any) {
+    this.ids = ids;
+    this.expression = expression;
+    this.body = body;
   }
 
-  analyze(context) {
+  analyze(context: any) {
     // We analyze the expression first so we can infer its type for our
     // loop variables.
     // Note that expressions in for loops only look outside for scope.

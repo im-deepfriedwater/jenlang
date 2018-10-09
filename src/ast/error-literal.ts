@@ -1,7 +1,10 @@
-const Type = require('./type.js');
+import { Type } from "./type";
 
-module.exports = class ErrorLiteral {
-  constructor(value) {
+export class ErrorLiteral {
+  value: any
+  type: any
+
+  constructor(value: any) {
     this.value = value;
   }
 

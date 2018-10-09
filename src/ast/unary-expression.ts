@@ -1,19 +1,23 @@
-const BooleanLiteral = require('./boolean-literal');
-const NumericLiteral = require('./numeric-literal');
+import { BooleanLiteral } from './boolean-literal';
+import { NumericLiteral } from './numeric-literal';
 
-module.exports = class UnaryExpression {
-  constructor(op, operand) {
-    Object.assign(this, { op, operand });
+export class UnaryExpression {
+  operand: any;
+  op: string;
+
+  constructor(op: any, operand: any) {
+    this.op = op;
+    this.operand = operand
   }
 
-  analyze(context) {
+  analyze(context: any) {
     this.operand.analyze(context);
   }
 
   optimize() {
     this.operand = this.operand.optimize();
     if (this.op === 'not' && this.operand instanceof BooleanLiteral) {
-      return BooleanLiteral(!this.operand.value);
+      return new BooleanLiteral(!this.operand.value);
     } else if (this.op === '-' && this.operand instanceof NumericLiteral) {
       return new NumericLiteral(-this.operand.value);
     }

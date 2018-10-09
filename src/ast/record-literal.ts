@@ -1,9 +1,11 @@
-module.exports = class RecordLiteral {
-  constructor(fields) {
+export class RecordLiteral {
+  fields: any;
+
+  constructor(fields: any) {
     this.fields = fields;
   }
   /* eslint-disable */
-  analyze(context) {
+  analyze(context: any) {
     context.assertRecordNoDuplicateFields(this, 'Duplicate field names');
   }
   /* eslint-enable */

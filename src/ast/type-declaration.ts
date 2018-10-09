@@ -1,9 +1,12 @@
-module.exports = class TypeDeclaration {
-  constructor(id, sumType) {
+export class TypeDeclaration {
+  id: any;
+  sumType: any;
+  
+  constructor(id: any, sumType: any) {
     Object.assign(this, { id, sumType });
   }
 
-  analyze(context) {
+  analyze(context: any) {
     this.sumType.analyze(context);
     context.addSumType(this.id, this.sumType);
   }
