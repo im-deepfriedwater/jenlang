@@ -52,4 +52,6 @@ export class BinaryExpression {
     this.right = this.right.optimize();
     return this;
   }
+  // Depends on the generator, as such will be filled in later.
+  gen() { }
 };

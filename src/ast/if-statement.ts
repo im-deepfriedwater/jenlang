@@ -14,8 +14,11 @@ export class IfStatement {
   }
 
   optimize() {
-    this.cases.map(s => s.optimize()).filter(s => s !== null);
+    this.cases.map((s: any) => s.optimize()).filter((s: any) => s !== null);
     this.alternate = this.alternate ? this.alternate.optimize() : null;
     return this;
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

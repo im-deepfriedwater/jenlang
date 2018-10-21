@@ -8,41 +8,42 @@
 // const parser = require('./parser');
 // const program = parse(sourceCodeString);
 
-const ohm = require('ohm-js');
-const fs = require('fs');
-const withIndentsAndDedents = require('./preparser.js');
+import { ohm } from 'ohm-js';
+import { fs } from 'fs'
+import { withIndentsAndDedents } from './preparser.js';
 
-const Program = require('../ast/program');
-const Body = require('../ast/body');
-const VarDec = require('../ast/variable-declaration');
-const VarAsgn = require('../ast/assignment-statement');
-const BooleanLiteral = require('../ast/boolean-literal');
-const NumericLiteral = require('../ast/numeric-literal');
-const StringLiteral = require('../ast/string-literal');
-const RecordLiteral = require('../ast/record-literal');
-const FieldValue = require('../ast/field-value');
-const WhileStatement = require('../ast/while-statement');
-const BreakStatement = require('../ast/break');
-const BinaryExpression = require('../ast/binary-expression');
-const UnaryExpression = require('../ast/unary-expression');
-const SubscriptedExpression = require('../ast/subscripted-expression');
-const FunctionCall = require('../ast/function-call');
-const FunctionDeclaration = require('../ast/function-declaration');
-const Return = require('../ast/return');
-const TernaryExpression = require('../ast/ternary-expression');
-const ErrorLiteral = require('../ast/error-literal');
-const ForStatement = require('../ast/for-statement');
-const Case = require('../ast/case');
-const IfStatement = require('../ast/if-statement');
-const Accessor = require('../ast/accessor');
-const ListExpression = require('../ast/list');
-const ListTypeExpression = require('../ast/list-type');
-const TypeDeclaration = require('../ast/type-declaration');
-const SumTypeClass = require('../ast/sum-type');
-const FuncSignature = require('../ast/signature');
-const FuncAnnotation = require('../ast/annotation');
-const IdentifierExpression = require('../ast/identifier-expression');
-const Caller = require('../ast/caller');
+import { Program } from '../ast/program';
+import { Body } from '../ast/body';
+import { VariableDeclaration as VarDec } from '../ast/variable-declaration';
+import { AssignmentStatement as VarAsgn } from '../ast/assignment-statement';
+
+import { BooleanLiteral } from '../ast/boolean-literal';
+import { NumericLiteral } from '../ast/numeric-literal';
+import { StringLiteral } from '../ast/string-literal';
+import { RecordLiteral } from '../ast/record-literal';
+import { FieldValue } from '../ast/field-value';
+import { WhileStatement } from '../ast/while-statement';
+import { BreakStatement } from '../ast/break';
+import { BinaryExpression } from '../ast/binary-expression';
+import { UnaryExpression } from '../ast/unary-expression';
+import { SubscriptedExpression } from '../ast/subscripted-expression';
+import { FunctionCall } from '../ast/function-call';
+import { FunctionDeclaration } from '../ast/function-declaration';
+import { Return } from '../ast/return';
+import { TernaryExpression } from '../ast/ternary-expression';
+import { ErrorLiteral } from '../ast/error-literal';
+import { ForStatement } from '../ast/for-statement';
+import { Case } from '../ast/case';
+import { IfStatement } from '../ast/if-statement';
+import { Accessor } from '../ast/accessor';
+import { ListExpression } from '../ast/list';
+import { ListTypeExpression } from '../ast/list-type';
+import { TypeDeclaration } from '../ast/type-declaration';
+import { SumTypeClass } from '../ast/sum-type';
+import { FuncSignature } from '../ast/signature';
+import { FuncAnnotation } from '../ast/annotation';
+import { IdentifierExpression } from '../ast/identifier-expression';
+import { Caller } from '../ast/caller';
 
 
 // Credit to Ray Toal:

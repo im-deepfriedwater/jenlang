@@ -10,8 +10,7 @@
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
         "noImplicitThis": true,
-        "noImplicitReturns": true,
-        "strict": true
+        "noImplicitReturns": true
     },
 
     "include": [

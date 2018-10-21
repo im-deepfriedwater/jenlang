@@ -24,4 +24,7 @@ export class WhileStatement {
     // Suggested: Look for returns/breaks in the middle of the body
     return this;
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

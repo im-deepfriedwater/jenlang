@@ -15,4 +15,7 @@ export class TypeDeclaration {
   optimize() {
     // Purposefully empty for now!
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

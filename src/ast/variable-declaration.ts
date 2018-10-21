@@ -7,6 +7,7 @@ export class VariableDeclaration {
 
   initializers: any;
   ids: any[];
+  variables: any;
 
   // During syntax analysis (parsing), all we do is collect the variable names.
   // We will make the variable objects later, because we have to add them to a
@@ -43,10 +44,13 @@ export class VariableDeclaration {
 
     // Now we can create actual variable objects and add to the current context.
     this.variables = this.ids.map((id, i) => new Variable(id, types[i]));
-    this.variables.forEach(v => v.analyze(context));
+    this.variables.forEach((v: any) => v.analyze(context));
   }
 
   optimize() {
     return this;
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

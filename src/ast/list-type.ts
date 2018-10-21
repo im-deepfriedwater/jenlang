@@ -29,10 +29,10 @@ export class ListType {
     }
   }
 
-  typeInference(context) {
+  typeInference(context: any) {
     const seenTypes = new Set();
     let singleTypeList = true;
-    this.listType.forEach((value) => {
+    this.listType.forEach((value: any) => {
       value.analyze(context);
       seenTypes.add(value.type);
       if (seenTypes.size > 1) {
@@ -66,8 +66,10 @@ export class ListType {
 
 
   /* eslint-disable class-methods-use-this */
-
   optimize() {
     return this;
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

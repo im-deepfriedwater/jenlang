@@ -21,13 +21,13 @@ export class ForStatement {
     if (!(this.expression.type instanceof ListType)) {
       throw new Error('Non-iterable used in for loop expression');
     }
-    this.loopVariables = this.ids.map((id, i) => {
+    this.loopVariables = this.ids.map((id: any, i: any) => {
       const v = new Variable(id, this.expression.type.getMemberType());
       this.ids[i] = v;
       return v;
     });
     const bodyContext = context.createChildContextForLoop();
-    this.loopVariables.forEach((v) => {
+    this.loopVariables.forEach((v: any) => {
       bodyContext.add(v);
     });
     this.body.analyze(bodyContext);
@@ -36,4 +36,7 @@ export class ForStatement {
   optimize() {
     return this;
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

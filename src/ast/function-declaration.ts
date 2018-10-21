@@ -35,4 +35,7 @@ export class FunctionDeclaration {
     context.add(this.function);
     this.function.analyze(context.createChildContextForFunctionBody(this));
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

@@ -1,6 +1,8 @@
 export class SubscriptedExpression {
   variable: any;
   subscript: any;
+  referent: any;
+  type: any;
   
   constructor(variable: any, subscript: any) {
     Object.assign(this, { variable, subscript });
@@ -18,4 +20,7 @@ export class SubscriptedExpression {
     this.subscript = this.subscript.optimize();
     return this;
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

@@ -27,4 +27,6 @@ export class Accessor {
     this.property = this.property.optimize();
     return this;
   }
+  // Depends on the generator, as such will be filled in later.
+  gen() { }
 };

@@ -11,4 +11,7 @@ export class IdentifierExpression {
     this.referent = context.lookup(this.id);
     this.type = this.referent.type;
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

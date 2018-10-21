@@ -48,4 +48,7 @@ export class Call {
     this.args.forEach((arg: any) => arg.optimize());
     return this;
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

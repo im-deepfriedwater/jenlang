@@ -15,4 +15,6 @@ export class BooleanLiteral {
   optimize() {
     return this;
   }
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

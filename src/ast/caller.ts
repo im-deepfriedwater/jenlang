@@ -12,4 +12,7 @@ export class Caller {
     this.call = this.call.optimize();
     return this;
   }
+  
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };

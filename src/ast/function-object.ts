@@ -110,4 +110,7 @@ export class FunctionObject {
     // Suggested: Look for returns in the middle of the body
     return this;
   }
+
+  // Depends on the generator, will be filled in later.
+  gen() { }
 };
