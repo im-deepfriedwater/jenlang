@@ -25,20 +25,20 @@
  * built into Node.js.
  */
 
-import fs from 'fs';
-import util from 'util';
-import parse from './syntax/parser';
+import * as fs from 'fs';
+import * as util from 'util';
+import * as yargs from 'yargs';
 import './backend/python-generator';
+import { parse } from './syntax/parser';
 
-const { argv } = require('yargs')
-  .usage('$0 [-a] [-o] [-i] filename')
+const { argv } = yargs.usage('$0 [-a] [-o] [-i] filename')
   .boolean(['a', 'o', 'i'])
   .describe('a', 'show abstract syntax tree after parsing then stop')
   .describe('o', 'do optimizations')
   .describe('i', 'generate and show the decorated abstract syntax tree then stop')
   .demand(1);
 
-fs.readFile(argv._[0], 'utf-8', (err, text) => {
+fs.readFile(argv._[0], 'utf-8', (err: any, text: any) => {
   if (err) {
     console.error(err); // eslint-disable-line no-console
     return;
@@ -58,7 +58,3 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
   }
   program.gen();
 });
-
-function f(x){
-  return x;
-}

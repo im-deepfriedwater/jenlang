@@ -1,6 +1,6 @@
 export class Case {
-  test: any
-  body: any
+  test: any;
+  body: any;
 
   constructor(test: any, body: any) {
     Object.assign(this, { test, body });

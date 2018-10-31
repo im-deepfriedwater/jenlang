@@ -1,4 +1,4 @@
-import { Variable } from '/.variable';
+import { Variable } from './variable';
 import { ListType } from '../ast/list-type';
 
 export class ForStatement {

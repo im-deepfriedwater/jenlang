@@ -16,7 +16,7 @@
  *   tabs, are illegal.
  */
 
-module.exports = (source) => {
+export function withIndentsAndDedents (source: string): string {
   const stack = [0];
   let result = '';
   const text = source.endsWith('\n') ? source : `${source}\n`;

@@ -10,11 +10,17 @@
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
         "noImplicitThis": true,
-        "noImplicitReturns": true
+        "noImplicitReturns": true,
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "rootDir": "src" 
     },
 
     "include": [
-        "./src/**/*",
-        "./test/**/*"
+        "src/**/*",
+    ],
+
+    "exclude": [
+        "src/test/**/*"
     ]
 }

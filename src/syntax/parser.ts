@@ -8,8 +8,8 @@
 // const parser = require('./parser');
 // const program = parse(sourceCodeString);
 
-import { ohm } from 'ohm-js';
-import { fs } from 'fs'
+import * as ohm from 'ohm-js';
+import * as fs from 'fs';
 import { withIndentsAndDedents } from './preparser.js';
 
 import { Program } from '../ast/program';
@@ -49,8 +49,7 @@ import { Caller } from '../ast/caller';
 // Credit to Ray Toal:
 // Ohm turns `x?` into either [x] or [], which we should clean up for our AST.
 const unpack = (a: any) => (a.length === 0 ? null : a[0]);
-
-const grammar = ohm.grammar(fs.readFileSync('./syntax/jen.ohm'));
+const grammar = ohm.grammar(fs.readFileSync('../src/syntax/jen.ohm', 'utf-8'));
 /* eslint-disable no-unused-vars */
 const astGenerator = grammar.createSemantics().addOperation('ast', {
   Program(_1: any, body: any, _2: any) { return new Program(body.ast()); },
@@ -118,11 +117,12 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   constId(_1: any, _2: any) { return this.sourceString; },
   FieldValue(id: any, _1: any, expression: any) { return new FieldValue(id.ast(), expression.ast()); },
   RecordLiteral(_1: any, fields: any, _2: any) { return new RecordLiteral(fields.ast()); },
-  booleanLiteral(_: any) { return new BooleanLiteral(this.sourceString === 'true'); },
+  booleanLiteral(_: any) {return new BooleanLiteral(this.sourceString as any === 'true'); 
+  },
   numLiteral(_1: any, _2: any, _3: any) { return new NumericLiteral(+this.sourceString); },
   errLiteral(_: any) { return new ErrorLiteral(this.sourceString); },
   stringLiteral(_1: any, chars: any, _2: any) { return new StringLiteral(this.sourceString); },
-  _terminal() { return this.sourceString; },
+  _terminal: function() { return this.sourceString; },
 });
 
 export function parse (text: string) {

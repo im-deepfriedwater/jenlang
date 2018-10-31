@@ -9,7 +9,7 @@
  *
  *   const Context = require('./semantics/context');
  */
-
+const a = 5;
 import { FunctionObject } from '../ast/function-object';
 import { FunctionDeclaration } from '../ast/function-declaration';
 import { Annotation } from '../ast/annotation';
