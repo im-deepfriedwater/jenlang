@@ -40,6 +40,7 @@ import { Accessor } from '../ast/accessor';
 import { ForStatement } from '../ast/for-statement';
 import { ListExpression } from '../ast/list';
 import { ListType as ListTypeExpression } from '../ast/list-type';
+import { TernaryExpression } from '../ast/ternary-expression';
 
 const indentPadding = 2;
 const OP_DICTIONARY : { [key: string]: string } = {
@@ -256,3 +257,7 @@ ListExpression.prototype.gen = function () {
   const values = this.values.map((v: any) => v.gen());
   return `[${values}]`;
 };
+
+TernaryExpression.prototype.gen = function () {
+  return `${this.trueValue.gen()} if ${this.conditional.gen()} else ${this.falseValue.gen()}`
+}

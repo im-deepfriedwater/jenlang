@@ -1,7 +1,8 @@
 y := [1, 2, 3, 4, 5]
 
-z, a = "hello", 10
-type stringOrNumber string | number
+z, a := "hello", 10
+x := 5
+type stringOrNumber: string | number
 
 while (x < 5):
   if x == 3:
