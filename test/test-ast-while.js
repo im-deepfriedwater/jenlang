@@ -1,4 +1,4 @@
-const parse = require('../syntax/parser');
+const { parse } = require( '../built/syntax/parser');
 const assert = require('assert');
 
 describe('While', () => {

@@ -1,4 +1,4 @@
- // Syntax parser module specifically for jen
+// Syntax parser module specifically for jen
 // For testing purposes only!
 //
 // Heavily inspired by Ray Toal's parser for iki:
@@ -7,11 +7,11 @@
 // For use:
 //
 // const parse = require('./test-syntax-parser');
-import ohm from "ohm";
+const ohm = require("ohm-js");
 const fs = require('fs');
-const withIndentsAndDedents = require('../syntax/preparser.js');
+const { withIndentsAndDedents } = require('../built/syntax/preparser.js');
 
-const grammar = ohm.grammar(fs.readFileSync('./syntax/jen.ohm'));
+const grammar = ohm.grammar(fs.readFileSync('./src/syntax/jen.ohm'));
 
 module.exports = (text) => {
   const match = grammar.match(withIndentsAndDedents(text));

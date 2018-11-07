@@ -12,7 +12,7 @@
 
 const fs = require('fs');
 const assert = require('assert');
-const withIndentsAndDedents = require('../syntax/preparser');
+const { withIndentsAndDedents } = require('../built/syntax/preparser');
 
 const fileDirectory = `${__dirname}/data/preparser`;
 

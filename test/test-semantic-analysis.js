@@ -11,7 +11,7 @@
 
 const fs = require('fs');
 const assert = require('assert');
-const parse = require('../syntax/parser');
+const { parse } = require( '../built/syntax/parser');
 
 const GOOD_PROGRAMS_DIR = 'test/data/good-programs';
 const BAD_PROGRAMS_DIR = 'test/data/semantic-errors';

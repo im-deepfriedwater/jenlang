@@ -17,7 +17,7 @@
     },
 
     "include": [
-        "src/**/*",
+        "src/**/*", "test/test-syntax-parser.js", "test/test-ast-accessor.js",
     ],
 
     "exclude": [

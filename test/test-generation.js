@@ -5,10 +5,10 @@
  * https://github.com/rtoal/plainscript/blob/master/test/analyzer/analyzer-test.js
  *
  */
-require('../backend/python-generator');
+require('../built/backend/python-generator');
 const fs = require('fs');
 const assert = require('assert');
-const parse = require('../syntax/parser');
+const { parse } = require( '../built/syntax/parser');
 const intercept = require('intercept-stdout');
 const shell = require('shelljs');
 

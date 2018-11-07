@@ -1,6 +1,5 @@
-import { parse } from '../syntax/parser';
-import assert from 'assert';
-
+const { parse } = require( '../built/syntax/parser');
+const assert = require('assert');
 describe('Accessor Expressions', () => {
   // Initialize test object for reuse.
   const expected = {
