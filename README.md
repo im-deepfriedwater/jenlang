@@ -7,7 +7,7 @@
 
 ## Introduction
 
-jen is a scripting language meant to be your new best friend! Drawing inspiration from JavaScript, Python, Go, Typescript's sum type, and even Elm, jen provides a pleasant and happy programming experience for all your high level needs. jen's powerful type system provides expressiveness, but also watches your back to prevent head-scratching type errors. With conciseness, elegance, and functionality, jen works hard as a language so you don't have to!
+jen is a scripting language meant to be your new best friend! Drawing inspiration from JavaScript, Python, Go, Typescript's sum type, and even Elm, jen provides a pleasant and happy programming experience for all your high level needs. jen's type system provides expressiveness, but also watches your back to prevent head-scratching type errors. With conciseness, elegance, and functionality, jen works hard as a language so you don't have to!
 
 ## Grammar
 
