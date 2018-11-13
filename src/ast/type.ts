@@ -12,7 +12,7 @@ export class Type {
   static VOID = new Type('void');
   static ANY = new Type('any');
 
-  name: any;
+  name: string;
   
   constructor(name: string) {
     this.name = name;
@@ -39,12 +39,12 @@ export class Type {
   mustBeAny(message: string) {
     return this.mustBeCompatibleWith(Type.ANY, message);
   }
-  mustBeCompatibleWith(otherType: any, message: string) {
+  mustBeCompatibleWith(otherType: Type, message: string) {
     if (otherType !== Type.ANY && !this.isCompatibleWith(otherType)) {
       throw message;
     }
   }
-  mustBeMutuallyCompatibleWith(otherType: any, message: string) {
+  mustBeMutuallyCompatibleWith(otherType: Type, message: string) {
     if (!(this.isCompatibleWith(otherType) || otherType.isCompatibleWith(this))) {
       throw message;
     }

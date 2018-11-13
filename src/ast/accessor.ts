@@ -7,6 +7,7 @@ export class Accessor {
   type: any;
 
   constructor(object: Object, property: Object) {
+    
     this.object = object;
     this.property = property;
   }

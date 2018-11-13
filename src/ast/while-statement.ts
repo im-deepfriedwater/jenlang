@@ -10,6 +10,7 @@ export class WhileStatement {
   }
 
   analyze(context: any) {
+    console.log(this.test);
     this.test.analyze(context);
     const bodyContext = context.createChildContextForLoop();
     this.body.analyze(bodyContext);

@@ -1,23 +1,27 @@
 import { Variable } from './variable';
 import { Caller } from './caller';
+import { Expression, Initializers } from './typings';
+
+import { Context } from '../semantics/context';
 
 // A VariableDeclaration declares one or more variables. The variable objects
 // will be created during semantic analysis.
 export class VariableDeclaration {
 
-  initializers: any;
-  ids: any[];
+  initializers: Initializers;
+  ids: string[];
   variables: any;
 
   // During syntax analysis (parsing), all we do is collect the variable names.
   // We will make the variable objects later, because we have to add them to a
   // semantic analysis context.
-  constructor(ids: any, initializers: any) {
+  constructor(ids: string[], initializers: Initializers) {
+    const util = require('util');
     this.ids = ids;
     this.initializers = initializers;
   }
 
-  analyze(context: any) {
+  analyze(context: Context) {
     // analyze first so functionCalls get analyzed
     this.initializers.forEach((e: any) => e.analyze(context));
 

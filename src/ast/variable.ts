@@ -1,5 +1,6 @@
 
-import { Type } from './type'
+import { Type } from './type';
+import { Context } from '../semantics/context';
 
 export class Variable {
   id: string
@@ -8,7 +9,7 @@ export class Variable {
     this.id = id;
     this.type = type;
   }
-  analyze(context: any) {
+  analyze(context: Context) {
     context.add(this);
   }
   optimize() {
