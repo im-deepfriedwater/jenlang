@@ -337,7 +337,7 @@ def fib(num):
 ```
 areaOfCircle: number -> number
 areaOfCircle(radius):
-  PI = Math.pi()
+  PI = pi()
   return PI * radius ^ 2
 
 
