@@ -1,4 +1,5 @@
-import { Type } from './type'
+import { Type } from './type';
+import { Context } from '../semantics/context';
 
 export class BooleanLiteral {
   value: any
@@ -8,7 +9,7 @@ export class BooleanLiteral {
     this.value = value;
   }
 
-  analyze() {
+  analyze(context: Context) {
     this.type = Type.BOOLEAN;
   }
 

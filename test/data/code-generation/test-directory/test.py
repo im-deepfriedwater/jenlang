@@ -16,8 +16,17 @@ def range_7 (i):
   return range(i)
 ok = 'ok'
 err = 'err'
-x_93 = 5
-if (((x_93 < 4) and not (x_93 > 3)) or (not (x_93 < 4) and (x_93 > 3))):
-  print_1(((True and not False) or (not True and False)))
-else: 
-  print_1('naww')
+x_15 = (3 + 5)
+print_1(x_15)
+x_15 = (3 * 5)
+print_1(x_15)
+x_15 = (3 ** 5)
+print_1(x_15)
+x_15 = (5 - 3)
+print_1(x_15)
+x_15 = (12 / 3)
+print_1(x_15)
+x_15 = (15 // 3)
+print_1(x_15)
+y_16 = (((15 / 3) > 0) and ((2 - 1) == 1))
+print_1(y_16)

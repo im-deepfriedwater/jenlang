@@ -1,25 +1,29 @@
 import { Type } from './type.js';
 import { IdentifierExpression } from './identifier-expression.js';
+import { Context } from '../semantics/context';
+
+type TypeOrId = Type | IdentifierExpression;
 
 export class SumType {
-  types: any;
-  computedTypes: any;
+  types!: Type[];
+  computedTypes!: Set<string | Type>;
 
-  constructor(basicTypeOrId1: any, basicTypeOrId2: any, moreBasicTypesOrIds: any) {
+  constructor(basicTypeOrId1: TypeOrId, basicTypeOrId2: TypeOrId, moreBasicTypesOrIds: TypeOrId[]) {
     Object.assign(this, {
       types: [basicTypeOrId1, basicTypeOrId2, ...moreBasicTypesOrIds],
     });
   }
 
-  analyze(context: any) {
+  analyze(context: Context) {
     // Creates a mapping of each string representation of a type to the actual
     // type it is referencing. This allows for recursively checking through
     // sum types in the case of nested sum types.
-    this.computedTypes = {};
-    this.types.forEach((type: any) => {
+    this.computedTypes = new Set();
+    this.types.forEach((type: Type) => {
       const typeId = type instanceof IdentifierExpression ? type.id : type;
-      this.computedTypes[typeId] = Type.cache[typeId] || context.lookupSumType(typeId);
+      this.computedTypes.add(typeId, Type.cache[typeId] || context.lookupSumType(typeId));
     });
+    console.log('THIS', this.computedTypes);
   }
 
   isCompatibleWith(otherType: any) {

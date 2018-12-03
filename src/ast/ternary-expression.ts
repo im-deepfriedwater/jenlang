@@ -1,19 +1,23 @@
+import { Context } from '../semantics/context';
+import { Expression } from './typings';
+
 export class TernaryExpression {
-  conditional: any;
-  trueValue: any;
-  falseValue: any;
+  conditional: Expression;
+  trueValue: Expression;
+  falseValue: Expression;
   
-  constructor(conditional: any, trueValue: any, falseValue: any) {
+  constructor(conditional: Expression, trueValue: Expression, falseValue: Expression) {
+    console.log(conditional);
     Object.assign(this, { conditional, trueValue, falseValue });
   }
 
-  analyze(context: any) {
+  analyze(context: Context): void { // TODO type check conditional
     this.conditional.analyze(context);
     this.trueValue.analyze(context);
     this.falseValue.analyze(context);
   }
 
-  optimize() {
+  optimize(): TernaryExpression{
     this.conditional = this.conditional.optimize();
     this.trueValue = this.trueValue.optimize();
     this.falseValue = this.falseValue.optimize();

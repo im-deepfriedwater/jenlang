@@ -1,4 +1,5 @@
 import { Type } from "./type";
+import { Context } from '../semantics/context';
 
 export class ErrorLiteral {
   value: any
@@ -8,7 +9,7 @@ export class ErrorLiteral {
     this.value = value;
   }
 
-  analyze() {
+  analyze(context: Context) {
     this.type = Type.ERROR;
   }
 

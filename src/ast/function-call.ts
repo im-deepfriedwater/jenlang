@@ -1,4 +1,5 @@
 import { MultiType } from '../semantics/multi-type';
+import { Context } from '../semantics/context';
 
 export class Call {
   callee: any
@@ -11,7 +12,7 @@ export class Call {
     this.args = args;
   }
 
-  analyze(context: any) {
+  analyze(context: Context) {
     this.callee.analyze(context);
     this.args.forEach((arg: any) => arg.analyze(context));
     context.assertIsFunction(this.callee.referent);

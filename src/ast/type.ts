@@ -1,3 +1,6 @@
+import { ListType } from './list-type';
+import { SumType } from './sum-type';
+
 interface TypeCache {
   [index: string]: Type
 }
@@ -18,7 +21,7 @@ export class Type {
     this.name = name;
     Type.cache[name] = this;
   }
-  static ForName (name: string): Type{
+  static ForName (name: string): Type {
     return Type.cache[name];
   }
   mustBeNumber(message: string) {
@@ -39,7 +42,7 @@ export class Type {
   mustBeAny(message: string) {
     return this.mustBeCompatibleWith(Type.ANY, message);
   }
-  mustBeCompatibleWith(otherType: Type, message: string) {
+  mustBeCompatibleWith(otherType: Type | ListType | SumType, message: string) {
     if (otherType !== Type.ANY && !this.isCompatibleWith(otherType)) {
       throw message;
     }
@@ -49,14 +52,14 @@ export class Type {
       throw message;
     }
   }
-  isCompatibleWith(otherType: any): any{
+  isCompatibleWith(otherType: Type | SumType | ListType): boolean {
     // If types is a field it is a sum type.
     // We'll defer to sum type to check for compatibility.
-    if (otherType.types) {
+    if (otherType instanceof SumType) {
       return otherType.isCompatibleWith(this);
     }
     // Likewise for list types.
-    if (otherType.listType) {
+    if (otherType instanceof ListType) {
       return otherType.isCompatibleWith(this);
     }
 

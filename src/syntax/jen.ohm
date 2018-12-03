@@ -28,7 +28,7 @@ Jen {
                      | Exp4
   Exp4               = (Exp4 "^" Exp5)                                     -- binary
                      | Exp5
-  Exp5               = "!" Exp5                                            -- not
+  Exp5               = ("!" | "-") Exp5                                    -- not
                      | Exp6
   Exp6               = FuncCall
                      | Exp6 "." id                                         -- accessor

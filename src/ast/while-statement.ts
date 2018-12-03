@@ -1,16 +1,17 @@
 import { BooleanLiteral } from './boolean-literal';
+import { Context } from '../semantics/context';
+import { Expression } from './typings';
+import { Body } from './body';
 
 export class WhileStatement {
-  test: any;
-  body: any;
-  condition: any;
+  test!: Expression;
+  body!: Body;
 
-  constructor(test: any, body: any) {
+  constructor(test: Expression, body: Body) {
     Object.assign(this, { test, body });
   }
 
-  analyze(context: any) {
-    console.log(this.test);
+  analyze(context: Context) {
     this.test.analyze(context);
     const bodyContext = context.createChildContextForLoop();
     this.body.analyze(bodyContext);
@@ -18,10 +19,10 @@ export class WhileStatement {
 
   optimize() {
     this.test = this.test.optimize();
-    if (this.test instanceof BooleanLiteral && this.condition.value === false) {
+    if (typeof this.test === 'BooleanLiteral' && !this.condition.value) {
       return null;
     }
-    this.body.map((s: any) => s.optimize()).filter((s: any) => s !== null);
+    this.body.statements.map((s: any) => s.optimize()).filter((s: any) => s !== null);
     // Suggested: Look for returns/breaks in the middle of the body
     return this;
   }

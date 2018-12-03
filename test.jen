@@ -1,1 +1,3 @@
-x := 5
+type x : string | number
+type y : x | boolean
+

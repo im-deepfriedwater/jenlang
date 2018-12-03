@@ -1,18 +1,20 @@
 import { Type } from './type.js'
+import { Context } from "../semantics/context";
+
 
 export class NumericLiteral {
-  value: any;
-  type: any;
+  value: number;
+  type!: Type;
   
-  constructor(value: any) {
+  constructor(value: number) {
     this.value = value;
   }
 
-  analyze() { // eslint-disable-line class-methods-use-this
+  analyze(context: Context) { // eslint-disable-line class-methods-use-this
     this.type = Type.NUMBER;
   }
 
-  optimize() {
+  optimize(): NumericLiteral {
     return this;
   }
 

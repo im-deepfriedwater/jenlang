@@ -1,4 +1,5 @@
 import { Type } from './type.js';
+import { Context } from '../semantics/context';
 
 export class StringLiteral {
   value: any;
@@ -8,7 +9,7 @@ export class StringLiteral {
     this.value = value;
   }
 
-  analyze() { // eslint-disable-line class-methods-use-this
+  analyze(context: Context) { // eslint-disable-line class-methods-use-this
     this.type = Type.STRING;
   }
 

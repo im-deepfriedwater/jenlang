@@ -1,6 +1,7 @@
 import { Variable } from './variable';
 import { Caller } from './caller';
 import { Expression, Initializers } from './typings';
+import { Type } from './type';
 
 import { Context } from '../semantics/context';
 
@@ -10,28 +11,27 @@ export class VariableDeclaration {
 
   initializers: Initializers;
   ids: string[];
-  variables: any;
+  variables!: Variable[];
 
   // During syntax analysis (parsing), all we do is collect the variable names.
   // We will make the variable objects later, because we have to add them to a
   // semantic analysis context.
   constructor(ids: string[], initializers: Initializers) {
-    const util = require('util');
     this.ids = ids;
     this.initializers = initializers;
   }
 
   analyze(context: Context) {
     // analyze first so functionCalls get analyzed
-    this.initializers.forEach((e: any) => e.analyze(context));
-
+    this.initializers.forEach((e: Expression) => e.analyze(context));
     // Checking if the right side is a call or a function call
     // If so, add the type of the return values
-    const types: any[] = [];
-    this.initializers.forEach((i: any) => {
+    const types: Type[] = [];
+    this.initializers.forEach((i: Expression) => {
       if (i instanceof Caller) {
         types.push(...(i.call.callee.referent.type));
       } else if (i.callee) {
+        console.log('HELP', i.callee);
         types.push(...(i.callee.referent.type));
       } else {
         types.push(i.type);
@@ -48,7 +48,7 @@ export class VariableDeclaration {
 
     // Now we can create actual variable objects and add to the current context.
     this.variables = this.ids.map((id, i) => new Variable(id, types[i]));
-    this.variables.forEach((v: any) => v.analyze(context));
+    this.variables.forEach((v: Variable) => v.analyze(context));
   }
 
   optimize() {

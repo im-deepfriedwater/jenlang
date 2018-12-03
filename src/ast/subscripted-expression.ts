@@ -1,3 +1,5 @@
+import { Context } from '../semantics/context';
+
 export class SubscriptedExpression {
   variable: any;
   subscript: any;
@@ -8,7 +10,7 @@ export class SubscriptedExpression {
     Object.assign(this, { variable, subscript });
   }
 
-  analyze(context: any) {
+  analyze(context: Context) {
     this.variable.analyze(context);
     this.subscript.analyze(context);
     this.referent = this.variable.referent;

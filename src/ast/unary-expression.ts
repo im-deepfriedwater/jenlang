@@ -1,20 +1,23 @@
 import { BooleanLiteral } from './boolean-literal';
 import { NumericLiteral } from './numeric-literal';
+import { Context } from '../semantics/context';
+import { Expression } from './typings';
 
 export class UnaryExpression {
-  operand: any;
+  operand: Expression;
   op: string;
 
-  constructor(op: any, operand: any) {
+  constructor(op: string, operand: Expression) {
     this.op = op;
-    this.operand = operand
+    this.operand = operand;
+    console.log(operand);
   }
 
-  analyze(context: any) {
+  analyze(context: Context) {
     this.operand.analyze(context);
   }
 
-  optimize() {
+  optimize(): UnaryExpression | BooleanLiteral | NumericLiteral {
     this.operand = this.operand.optimize();
     if (this.op === 'not' && this.operand instanceof BooleanLiteral) {
       return new BooleanLiteral(!this.operand.value);

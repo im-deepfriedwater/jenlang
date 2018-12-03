@@ -1,5 +1,6 @@
 import { Type } from './type';
 import { MultiType } from '../semantics/multi-type';
+import { Context } from '../semantics/context';
 
 export class BinaryExpression {
   op: any
@@ -10,7 +11,7 @@ export class BinaryExpression {
     Object.assign(this, { op, left, right });
   }
 
-  analyze(context: any) {
+  analyze(context: Context) {
     this.left.analyze(context);
     this.right.analyze(context);
 
